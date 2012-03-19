@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		09FF156F15178E80001F7A5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09FF156E15178E80001F7A5E /* main.cpp */; };
 		09FF157115178E80001F7A5E /* Mandelbrot_Set.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 09FF157015178E80001F7A5E /* Mandelbrot_Set.1 */; };
+		09FF15791517936B001F7A5E /* libmpi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FF15771517936B001F7A5E /* libmpi.dylib */; };
+		09FF157A1517936B001F7A5E /* libmpi_cxx.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FF15781517936B001F7A5E /* libmpi_cxx.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +30,8 @@
 		09FF156A15178E80001F7A5E /* Mandelbrot Set */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Mandelbrot Set"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FF156E15178E80001F7A5E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		09FF157015178E80001F7A5E /* Mandelbrot_Set.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Mandelbrot_Set.1; sourceTree = "<group>"; };
+		09FF15771517936B001F7A5E /* libmpi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpi.dylib; path = usr/local/lib/libmpi.dylib; sourceTree = SDKROOT; };
+		09FF15781517936B001F7A5E /* libmpi_cxx.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpi_cxx.dylib; path = usr/local/lib/libmpi_cxx.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09FF15791517936B001F7A5E /* libmpi.dylib in Frameworks */,
+				09FF157A1517936B001F7A5E /* libmpi_cxx.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +50,8 @@
 		09FF155F15178E80001F7A5E = {
 			isa = PBXGroup;
 			children = (
+				09FF15771517936B001F7A5E /* libmpi.dylib */,
+				09FF15781517936B001F7A5E /* libmpi_cxx.dylib */,
 				09FF156D15178E80001F7A5E /* Mandelbrot Set */,
 				09FF156B15178E80001F7A5E /* Products */,
 			);
@@ -171,6 +179,15 @@
 		09FF157515178E80001F7A5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_OPENMP_SUPPORT = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				OTHER_LDFLAGS = (
+					"-lmpi",
+					"-lopen-rte",
+					"-lopen-pal",
+					"-lutil",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -178,6 +195,15 @@
 		09FF157615178E80001F7A5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_OPENMP_SUPPORT = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				OTHER_LDFLAGS = (
+					"-lmpi",
+					"-lopen-rte",
+					"-lopen-pal",
+					"-lutil",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
