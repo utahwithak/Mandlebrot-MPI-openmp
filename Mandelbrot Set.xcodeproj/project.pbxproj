@@ -77,9 +77,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		09FF156915178E80001F7A5E /* Mandelbrot Set */ = {
+		09FF156915178E80001F7A5E /* MandelbrotSet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09FF157415178E80001F7A5E /* Build configuration list for PBXNativeTarget "Mandelbrot Set" */;
+			buildConfigurationList = 09FF157415178E80001F7A5E /* Build configuration list for PBXNativeTarget "MandelbrotSet" */;
 			buildPhases = (
 				09FF156615178E80001F7A5E /* Sources */,
 				09FF156715178E80001F7A5E /* Frameworks */,
@@ -89,7 +89,7 @@
 			);
 			dependencies = (
 			);
-			name = "Mandelbrot Set";
+			name = MandelbrotSet;
 			productName = "Mandelbrot Set";
 			productReference = 09FF156A15178E80001F7A5E /* Mandelbrot Set */;
 			productType = "com.apple.product-type.tool";
@@ -114,7 +114,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				09FF156915178E80001F7A5E /* Mandelbrot Set */,
+				09FF156915178E80001F7A5E /* MandelbrotSet */,
 			);
 		};
 /* End PBXProject section */
@@ -220,13 +220,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		09FF157415178E80001F7A5E /* Build configuration list for PBXNativeTarget "Mandelbrot Set" */ = {
+		09FF157415178E80001F7A5E /* Build configuration list for PBXNativeTarget "MandelbrotSet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				09FF157515178E80001F7A5E /* Debug */,
 				09FF157615178E80001F7A5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
