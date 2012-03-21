@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     int Size = 8192;
 
 	double startTime = When();
-	int MaxIterations = 30;
+	int MaxIterations = 1000;
     
     int blocksize= Size / ((nproc-1) / ((int)sqrt((nproc-1))))  ;
     
@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
          
          */
 
-        int chunkSize=((nproc-1) / 2);
+        int chunkSize=((nproc-1) / ((nproc-1) / ((int)sqrt((nproc-1)))));
         for (int i = 1; i<nproc; i++) {
             //give them all a chunk
             //for 4 it should be
@@ -60,7 +60,7 @@ int main(int argc, char** argv) {
         }
         fprintf(stderr,"\n%d:iproc Done Sending\n", iproc);
 
-
+        #pragma omp parallel for 
         for (int i = 1; i<nproc; i++) {
             MPI_Recv(dataBlock, blocksize*blocksize, MPI_INT, i , 0, MPI_COMM_WORLD, &status);
             int count =0;
@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
         }
         fprintf(stderr,"\n%d:iproc Done recieving\n", iproc);
         cout<<"DONE "<<iproc<<"  "<<(When()-startTime)<<endl;
-
+/*
         //OUTPUT
         FILE *f = fopen("/Users/cwieland/Desktop/out.ppm", "wb");
         fprintf(f, "P6\n%i %i 255\n",(int) Size , (int)Size);
@@ -102,7 +102,7 @@ int main(int argc, char** argv) {
         }
         fclose(f);
         cout<<"DONE Creating File"<<endl;
-
+*/
         
     }
     else{
@@ -115,6 +115,7 @@ int main(int argc, char** argv) {
         int offy=0;
         int offx = 0;
         int count =0;
+        #pragma omp parallel for 
         for (int y = topLeft[1]; y < topLeft[1]+blocksize; y++){
            double MinRe		=	-2.0;
            double MaxRe		=	1.0;
