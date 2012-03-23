@@ -63,6 +63,8 @@ int main(int argc, char** argv) {
         #pragma omp parallel for 
         for (int i = 1; i<nproc; i++) {
             MPI_Recv(dataBlock, blocksize*blocksize, MPI_INT, i , 0, MPI_COMM_WORLD, &status);
+            fprintf(stderr,"\n%d:recieved from %i\n", iproc,i);
+
             int count =0;
             for (int y = 0; y < blocksize; y++) {
                 for (int x = 0; x < blocksize; x++){

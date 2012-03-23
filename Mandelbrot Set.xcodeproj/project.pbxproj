@@ -27,7 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		09FF156A15178E80001F7A5E /* Mandelbrot Set */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Mandelbrot Set"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09FF156A15178E80001F7A5E /* MandelbrotSet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MandelbrotSet; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FF156E15178E80001F7A5E /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		09FF157015178E80001F7A5E /* Mandelbrot_Set.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Mandelbrot_Set.1; sourceTree = "<group>"; };
 		09FF15771517936B001F7A5E /* libmpi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmpi.dylib; path = usr/local/lib/libmpi.dylib; sourceTree = SDKROOT; };
@@ -60,7 +60,7 @@
 		09FF156B15178E80001F7A5E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				09FF156A15178E80001F7A5E /* Mandelbrot Set */,
+				09FF156A15178E80001F7A5E /* MandelbrotSet */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,7 +91,7 @@
 			);
 			name = MandelbrotSet;
 			productName = "Mandelbrot Set";
-			productReference = 09FF156A15178E80001F7A5E /* Mandelbrot Set */;
+			productReference = 09FF156A15178E80001F7A5E /* MandelbrotSet */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -180,6 +180,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_OPENMP_SUPPORT = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				OTHER_LDFLAGS = (
