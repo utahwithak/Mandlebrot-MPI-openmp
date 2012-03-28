@@ -6,7 +6,9 @@
 using namespace std;
 
 double When();
-
+//$PBS_NODEFILE
+//uniq($PBS_NODEFILE)>f
+//mpirun -np nodes -machinefile f 
 
 int main(int argc, char** argv) {
     
@@ -33,23 +35,9 @@ int main(int argc, char** argv) {
     if(iproc == 0){
 
         int* values = (int*)malloc(Size*Size*sizeof(int));
-        //MASTER
-        //COLUMNS
-        /*  1 2 
-            3 4
-         
-         */
-
         int chunkSize=((nproc-1) / ((nproc-1) / ((int)sqrt((nproc-1)))));
         for (int i = 1; i<nproc; i++) {
-            //give them all a chunk
-            //for 4 it should be
-            /*
-                x= 0, 510, 0, 510
-                y= 0, 0, 510, 510
-             */
-            
-            
+
             topLeft[0] = ((i-1) % chunkSize) * Size/chunkSize;
             topLeft[1] = ((i-1)/chunkSize) * Size/chunkSize ;
 
@@ -83,28 +71,6 @@ int main(int argc, char** argv) {
         }
         fprintf(stderr,"\n%d:iproc Done recieving\n", iproc);
         cout<<"DONE "<<iproc<<"  "<<(When()-startTime)<<endl;
-/*
-        //OUTPUT
-        FILE *f = fopen("/Users/cwieland/Desktop/out.ppm", "wb");
-        fprintf(f, "P6\n%i %i 255\n",(int) Size , (int)Size);
-        for (int y=0; y<Size; y++){
-            for (int x=0; x<Size; x++)
-            {
-                if(values[Size * y + x] >= MaxIterations/2){
-                    fputc((int)(values[Size * y + x] * CON_FCTR) , f);
-                    fputc(255, f);
-                    fputc(255, f);
-                }
-                else{
-                    fputc((int)(values[Size * y + x] * CON_FCTR) , f);
-                    fputc(0, f);
-                    fputc(0, f);
-                }
-            }
-        }
-        fclose(f);
-        cout<<"DONE Creating File"<<endl;
-*/
         
     }
     else{
@@ -112,7 +78,7 @@ int main(int argc, char** argv) {
         //WORKER
         //Get our Chunk
         MPI_Recv( topLeft, 2, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
-        //fprintf( stderr,"\n%d:iproc Done Receiving: TLX: %i TLY:%i BRX:%i BRY:%i\n", iproc,topLeft[0],topLeft[1],topLeft[0]+blocksize,topLeft[1]+blocksize);
+        fprintf( stderr,"\n%d:iproc Done Receiving: TLX: %i TLY:%i BRX:%i BRY:%i\n", iproc,topLeft[0],topLeft[1],topLeft[0]+blocksize,topLeft[1]+blocksize);
 
         int offy=0;
         int offx = 0;
