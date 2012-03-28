@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
                 {
                     topLeft[0] = (curSection*chunkSize) % (Size)  ;
                     topLeft[1] = (curSection/chunkSize) * chunkSize;
-                    fprintf(stderr,"%d: sending:%i %i   >>>to iproc:%i  curSection:%i \n", iproc,topLeft[0],topLeft[1], tid+1,curSection);
+                    //fprintf(stderr,"%d: sending:%i %i   >>>to iproc:%i  curSection:%i \n", iproc,topLeft[0],topLeft[1], tid+1,curSection);
                     //cout<<"sending: "<<topLeft[0]<<"  "<<topLeft[1]<<"  >>>tid: "<<tid<<" curSection: "<<curSection<<endl;
                     MPI_Send(topLeft, 2, MPI_INT, tid+1, 0, MPI_COMM_WORLD);
                     curSection++;
