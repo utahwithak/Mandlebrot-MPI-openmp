@@ -116,7 +116,7 @@ int main(int argc, char** argv) {
     }
     else{
         int* topLeft = (int*) malloc(2*sizeof(int));
-        int* dataBlock = (int*) malloc(chunkSize*chunkSize * sizeof(int));
+        int* dataBlock = (int*) malloc(2*chunkSize*chunkSize * sizeof(int));
 
         //WORKER
         //Get our Chunk
