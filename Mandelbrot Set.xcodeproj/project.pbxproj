@@ -180,7 +180,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_OPENMP_SUPPORT = YES;
-				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				OTHER_LDFLAGS = (

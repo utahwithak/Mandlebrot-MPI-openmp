@@ -33,13 +33,13 @@ int main(int argc, char** argv) {
     //BLOCK DATA    
     
     if(iproc == 0){
-        int* values = (int*)malloc(Size*Size*sizeof(int));
+        int* values = (int*)malloc(2*Size*Size*sizeof(int));
         int curSection=0;
         int tid=0;
         /* Fork a team of threads with each thread having a private tid variable */
         #pragma omp parallel private(tid) shared(values) num_threads(nproc-1)
         {
-            int* dataBlock = (int*) malloc(chunkSize*chunkSize * sizeof(int));
+            int* dataBlock = (int*) malloc(2*chunkSize*chunkSize * sizeof(int));
             int* topLeft = (int*) malloc(2*sizeof(int));
 
             /* Obtain thread id */
