@@ -50,11 +50,12 @@ int main(int argc, char** argv) {
                 {
                     topLeft[0] = (curSection*chunkSize) % (Size)  ;
                     topLeft[1] = (curSection/chunkSize) * chunkSize;
+                    curSection++;
+                    MPI_Send(topLeft, 2, MPI_INT, tid+1, 0, MPI_COMM_WORLD);
+
+                 }
                     //fprintf(stderr,"%d: sending:%i %i   >>>to iproc:%i  curSection:%i \n", iproc,topLeft[0],topLeft[1], tid+1,curSection);
                     //cout<<"sending: "<<topLeft[0]<<"  "<<topLeft[1]<<"  >>>tid: "<<tid<<" curSection: "<<curSection<<endl;
-                    MPI_Send(topLeft, 2, MPI_INT, tid+1, 0, MPI_COMM_WORLD);
-                    curSection++;
-                }
                 #pragma omp critical
                 {
                     MPI_Recv(dataBlock, chunkSize*chunkSize, MPI_INT, tid+1 , 0, MPI_COMM_WORLD, &status);
@@ -83,16 +84,16 @@ int main(int argc, char** argv) {
 
             
             }
+            topLeft[0] = -1;
+            topLeft[1] = -1;
             #pragma omp critical
             {
-                topLeft[0] = -1;
-                topLeft[1] = -1;
                 //cout<<"0:KILLING!:"<<topLeft[0]<<topLeft[1]<<"  >>>"<<tid<<endl;
                 MPI_Send(topLeft, 2, MPI_INT, tid+1, 0, MPI_COMM_WORLD);
             }
         }//end pragma omp
         cout<<"FINISHED!! "<<iproc<<"  "<<(When()-startTime)<<endl;
-       /* FILE *f = fopen("/Users/cwieland/Desktop/out.ppm", "wb");
+        /*FILE *f = fopen("/~/out.ppm", "wb");
         fprintf(f, "P6\n%i %i 255\n",(int) Size , (int)Size);
         for (int y=0; y<Size; y++){
             for (int x=0; x<Size; x++)
@@ -110,7 +111,8 @@ int main(int argc, char** argv) {
             }
         }
         fclose(f);
-        cout<<"DONE Creating File"<<endl;*/
+        cout<<"DONE Creating File"<<endl;
+         */
 
 
     }
@@ -140,12 +142,8 @@ int main(int argc, char** argv) {
                 double c_im = MaxIm - y * Im_factor;
                 offx=0;
                 for (int x = topLeft[0]; x < topLeft[0] + chunkSize ; x++) {
-                    
-                    //if(iproc==1)
-                    // fprintf(stderr,"\t%d:%i\n", iproc,x);
-                    
+
                     double c_re = MinRe + x * Re_factor;
-                    
                     double Z_re = c_re, Z_im = c_im;
                     
                     int n=0;
